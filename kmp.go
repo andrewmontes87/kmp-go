@@ -128,5 +128,5 @@ func makeHandler(fn func (http.ResponseWriter, *http.Request, string)) http.Hand
 
 func main() {
     http.HandleFunc("/", makeHandler(kmpHandler))
-    http.ListenAndServe(":8080", nil)
+    http.ListenAndServe(":80", nil)
 }

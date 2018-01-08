@@ -8,6 +8,7 @@ import (
     "regexp"
     // "strings"
     "bytes"
+    "os"
     // "html"
     // "fmt"
 )
@@ -127,6 +128,13 @@ func makeHandler(fn func (http.ResponseWriter, *http.Request, string)) http.Hand
 }
 
 func main() {
+    port := os.Getenv("PORT")
+
+    if port == "" {
+        // log.Fatal("$PORT must be set")
+        port = "8080"
+    }
+
     http.HandleFunc("/", makeHandler(kmpHandler))
-    http.ListenAndServe(":80", nil)
+    http.ListenAndServe(":" + port, nil)
 }
